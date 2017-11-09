@@ -1,41 +1,43 @@
 <template>
-  <div class="more">
-    <div class="title">
-      <span @click="fallback">&lt;</span>
-      <div class="titlename">{{lists[index].name}}</div>
-      <span></span>
-    </div>
-    <div class="comics-list" v-if="lists[index].obj_type==2" ref="more">
-      <div class="scroll">
-        <span class="listsname">{{lists[index].name}}</span>
-        <div class="list"><p><span></span></p>漫画列表</div>
-        <ul>
-          <li class="comics" v-for="item in lists[index].comics">
-            <div class="img">
-              <img :src="item.cover_img">
-            </div>
-            <div class="text">
-              <div class="comics-name">{{item.name}}</div>
-              <div class="author">作者:{{item.name}}</div>
-              <div class="type">类型:科幻、搞笑</div>
-              <div class="time">更新:2017-09-21</div>
-              <div class="last_volume">更新至{{item.last_volume}}</div>
-            </div>
-          </li>
-        </ul>
+  <transition name="more">
+    <div class="more">
+      <div class="title">
+        <span @click="fallback">&lt;</span>
+        <div class="titlename">{{lists[index].name}}</div>
+        <span></span>
+      </div>
+      <div class="comics-list" v-if="lists[index].obj_type==2" ref="more">
+        <div class="scroll">
+          <span class="listsname">{{lists[index].name}}</span>
+          <div class="list"><p><span></span></p>漫画列表</div>
+          <ul>
+            <li class="comics" v-for="item in lists[index].comics">
+              <div class="img">
+                <img :src="item.cover_img">
+              </div>
+              <div class="text">
+                <div class="comics-name">{{item.name}}</div>
+                <div class="author">作者:{{item.name}}</div>
+                <div class="type">类型:科幻、搞笑</div>
+                <div class="time">更新:2017-09-21</div>
+                <div class="last_volume">更新至{{item.last_volume}}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="theme-list" v-if="lists[index].obj_type==1" ref="more">
+        <div class="scroll">
+          <ul>
+            <li class="lis" v-for="item in lists[index].theme_list">
+              <div class="cover"><img :src="item.cover" alt=""></div>
+              <div class="text"><span>{{item.name}}</span><span class="right">&gt;</span></div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="theme-list" v-if="lists[index].obj_type==1" ref="more">
-      <div class="scroll">
-        <ul>
-          <li class="lis" v-for="item in lists[index].theme_list">
-            <div class="cover"><img :src="item.cover" alt=""></div>
-            <div class="text"><span>{{item.name}}</span><span class="right">&gt;</span></div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -84,6 +86,10 @@
     width: 100%;
     height: 100%;
     background-color: #fff;
+    transition: all 0.5s;
+    &.more-enter, &.more-leave-to {
+      opacity: 0;
+    }
     z-index: 500;
     .title {
       position: relative;

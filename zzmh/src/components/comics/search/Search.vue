@@ -29,22 +29,24 @@
     <div class="box" v-if="(getshow&&!getisfocus&&!getisnull)">
       没有找到漫画
     </div>
-    <div class="comics-list" v-if="!getshow" ref="comics" @tap="inputblur">
-      <ul>
-        <li class="comics" v-for="item in comicsarr">
-          <div class="img">
-            <img :src="item.cover_img">
-          </div>
-          <div class="text">
-            <div class="comics-name">{{item.name}}</div>
-            <div class="author">作者:{{item.name}}</div>
-            <div class="type">类型:科幻、搞笑</div>
-            <div class="time">更新:2017-09-21</div>
-            <div class="last_volume">更新至{{item.last_volume}}</div>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <transition name="comics">
+      <div class="comics-list" v-if="!getshow" ref="comics" @tap="inputblur">
+        <ul>
+          <li class="comics" v-for="item in comicsarr">
+            <div class="img">
+              <img :src="item.cover_img">
+            </div>
+            <div class="text">
+              <div class="comics-name">{{item.name}}</div>
+              <div class="author">作者:{{item.name}}</div>
+              <div class="type">类型:科幻、搞笑</div>
+              <div class="time">更新:2017-09-21</div>
+              <div class="last_volume">更新至{{item.last_volume}}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -167,7 +169,18 @@
         }
       },
       clicktext(val){
-        this.inputblur()
+        if (this.t1 == null) {
+          this.t1 = new Date().getTime();
+        } else {
+          var t2 = new Date().getTime();
+          if (t2 - this.t1 < 100) {
+            this.t1 = t2;
+            return;
+          } else {
+            this.t1 = t2;
+          }
+        }
+        this.$refs.input.blur()
         this.search(val)
         this.timer(false)
       },
@@ -328,6 +341,10 @@
       z-index: 200;
       background-color: #fff;
       overflow: hidden;
+      transition: all 0.5s;
+      &.comics-enter, &.comics-leave-to {
+        opacity: 0;
+      }
       ul {
         .comics {
           display: flex;
