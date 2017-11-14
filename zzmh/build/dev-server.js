@@ -26,7 +26,7 @@ var zzmhData=require('../data.json')
 
 var recommend=zzmhData.recommend
 
-var classification=zzmhData.classification
+var sort=zzmhData.sort
 
 var apiRouter = express.Router()
 
@@ -39,10 +39,10 @@ apiRouter.get('/recommend', function (req, res) {
   })
 })
 
-apiRouter.get('/classification', function (req, res) {
+apiRouter.get('/sort', function (req, res) {
   res.json({
     error: 0,
-    data: classification
+    data: sort
   })
 })
 

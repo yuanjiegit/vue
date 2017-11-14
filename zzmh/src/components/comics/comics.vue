@@ -1,44 +1,34 @@
 <template>
-  <div id="app">
+  <div class="comics">
     <div class="top">
       <div class="recommend">
         <router-link to="/comics/recommend">推荐</router-link>
       </div>
-      <div class="recommend classification">
-        <router-link to="/comics/classification" class="classification">分类</router-link>
+      <div class="recommend sort">
+        <router-link to="/comics/sort" class="sort">分类</router-link>
         <router-link to="/comics/search" class="search icon-search"></router-link>
       </div>
     </div>
-    <router-view :recommend="recommend"></router-view>
+    <router-view :recommend="recommend" :sort="sort"></router-view>
   </div>
 </template>
 
 <script>
   export default {
-    data() {
-      return {
-        recommend: {}
+    props: {
+      recommend: {
+        type: Object
+      },
+      sort: {
+        type: Object
       }
-    },
-    created() {
-      let self = this
-      this.$axios.get('/api/recommend')
-        .then((res) => {
-          res = res.data
-          if (res.error === 0) {
-            self.recommend = res.data
-          }
-        })
-        .catch((error) => {
-          alert(error)
-        })
     }
   }
 </script>
 
 
 <style lang="less" rel="stylesheet/less" scoped>
-  #app {
+  .comics {
     width: 100%;
     height: 100%;
     .top {
@@ -67,13 +57,13 @@
             box-sizing: border-box;
           }
         }
-        .search{
+        .search {
           line-height: 40px;
           font-size: 16px;
           color: #2b343c;
         }
       }
-      .classification {
+      .sort {
         text-align: left;
         .search {
           float: right;

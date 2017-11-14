@@ -4,7 +4,7 @@ import comics from '../components/comics/comics'
 import group from '../components/group/group'
 import home from '../components/home/home'
 import mine from '../components/mine/mine'
-import classification from  '../components/comics/classification/Classification'
+import sort from  '../components/comics/sort/Sort'
 import recommend from  '../components/comics/recommend/Recommend'
 import search from  '../components/comics/search/Search'
 
@@ -17,9 +17,9 @@ export default new Router({
       component: comics,
       redirect: '/comics/recommend',
       children: [
-        { path: "/comics/classification", component: classification },
-        { path: "/comics/recommend", component: recommend },
-        { path: "/comics/search", component: search }
+        {path: "/comics/sort", component: sort},
+        {path: "/comics/recommend", component: recommend},
+        {path: "/comics/search", component: search}
       ]
     },
     {

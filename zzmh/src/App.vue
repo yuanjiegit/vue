@@ -6,21 +6,18 @@
     <span><router-link to="/group">小组</router-link></span>
     <span><router-link to="/mine">我的</router-link></span>
     </div>
-    <router-view></router-view>
+    <router-view :recommend="recommend" :sort="sort"></router-view>
   </div>
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
   export default {
     name: 'app',
     data() {
       return {
-        recommend: {}
+        recommend: {},
+        sort:{},
       }
-    },
-    computed:{
-      ...mapGetters(['getshowmore'])
     },
     created() {
       let self = this
@@ -29,6 +26,16 @@
           res = res.data
           if (res.error === 0) {
             self.recommend = res.data
+          }
+        })
+        .catch((error) => {
+          alert(error)
+        })
+      this.$axios.get('/api/sort')
+        .then((res) => {
+          res = res.data
+          if (res.error === 0) {
+            self.sort = res.data
           }
         })
         .catch((error) => {

@@ -3,7 +3,7 @@
     <ul class="section">
       <li class="header">
         <template>
-          <slider :pages="pages" :sliderinit="sliderinit" v-if="pages">
+          <slider :pages="pages" :sliderinit="sliderinit" v-if="pages" >
           </slider>
         </template>
       </li>
@@ -114,9 +114,9 @@
         if (nv) {
           if (this.sectionScroll) {
             this.sectionScroll.destroy()
-            this.sectionScroll=null
+            this.sectionScroll = null
           }
-        }else {
+        } else {
           this.$nextTick(() => {
             this.initiscroll()
           })
@@ -138,13 +138,13 @@
     bottom: 0px;
     width: 100%;
     overflow: hidden;
+    background-color: #eeeaeb;
     .section {
       position: absolute;
       top: 43px;
       /*bottom: 40px;*/
       padding: 10px 0;
       width: 100%;
-      background-color: #eeeaeb;
       &:first-child {
         padding: 0;
       }
@@ -154,12 +154,17 @@
           width: 100%;
           margin: 0;
         }
+        .slider-item{
+          background-repeat:no-repeat !important;
+          background-size: 100% 100% !important;
+        }
       }
       .lis {
         padding: 0 10px;
         margin-bottom: 10px;
         width: 100%;
         background-color: #fff;
+        box-sizing: border-box;
         &:last-child {
           margin-bottom: 80px;
         }
@@ -180,7 +185,7 @@
           }
           .right {
             float: right;
-            margin-right: 20px;
+            margin-right: 5px;
             font-size: 12px;
             color: #c3c3c3;
           }
@@ -190,11 +195,11 @@
           .allcomics-ul {
             display: flex;
             width: 100%;
+            overflow: hidden;
             .comics {
-              flex: 0 0 30%;
-              margin-right: 5px;
+              flex: 0 0 32%;
+              margin-right: 2%;
               margin-bottom: 10px;
-              float: left;
               overflow: hidden;
               &:last-child {
                 margin-right: 0px;
@@ -220,12 +225,12 @@
               }
             }
             .theme {
-              flex: 0 0 46%;
-              float: left;
+              flex: 0 0 49%;
               overflow: hidden;
+              margin-right: 2%;
               margin-bottom: 10px;
-              &:first-child {
-                margin-right: 2%;
+              &:last-child {
+                margin-right: 0;
               }
               .cover {
                 width: 100%;
@@ -241,7 +246,7 @@
               }
             }
             .group {
-              flex: 0 0 47%;
+              flex: 0 0 49%;
               margin-right: 2%;
               margin-bottom: 10px;
               .cover {
