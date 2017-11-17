@@ -139,6 +139,7 @@
     width: 100%;
     overflow: hidden;
     background-color: #eeeaeb;
+    touch-action:none;
     .section {
       position: absolute;
       top: 43px;
