@@ -221,6 +221,7 @@
     width: 100%;
     background-color: #ffffff;
     z-index: 150;
+    touch-action:none;
     .title {
       display: flex;
       padding: 10px 0;
