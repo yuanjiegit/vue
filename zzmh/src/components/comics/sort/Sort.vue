@@ -64,6 +64,7 @@
     z-index: 100;
     background-color: rgba(240, 240, 240, 0.52);
     overflow: hidden;
+    touch-action:none;
     .scroll {
       padding: 10px 5px;
       .topic {
