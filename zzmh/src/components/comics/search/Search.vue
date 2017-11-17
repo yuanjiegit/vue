@@ -237,6 +237,7 @@
       }
       .input {
         flex: 1;
+        height:100%;
         input {
           padding-left: 10px;
           outline:none;
@@ -244,8 +245,10 @@
           height: 100%;
           border-top-left-radius: 15px;
           border-bottom-left-radius: 15px;
-          box-sizing: border-box;
           border: 1px solid #c0c0c0;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
           caret-color:#c7e299;
           font-size: 12px;
           font-weight: 500;
